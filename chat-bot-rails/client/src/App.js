@@ -1,38 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react'
 
 function App() {
-  const userInput = "cow go boy girl sit"
+  const user_input = { "user_input" : "I am feeling worse"}
 
-  // const [ wordsArr, setWordArr] = useState([])
-  let newArr = []
+  const [ Deconstructed_User_Input, setDeconstructed_User_Input] = useState({})
+  useEffect(()=>{
+  fetch("http://localhost:3000/word_search",{
+    method: "POST",
+    headers:{
+      "Content-Type": "application/json",
+      "Accept" : "application/json"
+    },
+    body: JSON.stringify(user_input)
+  })
+.then(resp => resp.json())
+.then(data=> setDeconstructed_User_Input(data))
+  },[])
 
-  // const arr = userInput.split(' ')
-  // arr.forEach(word => wordSearch(word))
 
-  // function wordSearch(word){
-  //     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-  //     .then(resp=> resp.json())
-  //     .then(data =>{
-  //       wordConverter(data)
-  //       // setWordArr([...wordsArr, data[0].meanings[0].partOfSpeech])
-  //   })
-  // }
+console.log(Deconstructed_User_Input)
+  // wordSearch(user_input)
 
-  function wordConverter(word){
-    newArr.push(word[0].meanings[0].partOfSpeech)
-  }
-  console.log(newArr)
+  // function respond(word){
+  //   if( word === "sad" || word === "bad" || word === "depressed" ){
+  //     console.log( `Sorry to hear that you're ${word},`)
+  //   }else if( word === "happy" ){
+  //     console.log ("Fantastic! What has cuased you to be happy?")
+  //   }else 
+  //     console.log( "Could you explain?")
+  // };
 
-  function respond(word){
-    if( word === "sad" || word === "bad" || word === "depressed" ){
-      console.log( `Sorry to hear that you're ${word},`)
-    }else if( word === "happy" ){
-      console.log ("Fantastic! What has cuased you to be happy?")
-    }else 
-      console.log( "Could you explain?")
-  };
-
-respond('depressed')
+// respond('depressed')
   return(
     <div className="App">
 
