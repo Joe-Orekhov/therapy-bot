@@ -2,6 +2,7 @@ Survey.defaultBootstrapMaterialCss.navigationButton = "btn btn-green";
 Survey.defaultBootstrapMaterialCss.rating.item = "btn btn-default my-rating";
 Survey.StylesManager.applyTheme("bootstrapmaterial");
 
+
         const json = { pages: [
         {questions: [
             { type: "matrix", name: "Quality", title: "Please indicate if you agree or disagree with the following statements",
@@ -21,17 +22,8 @@ Survey.StylesManager.applyTheme("bootstrapmaterial");
     ]
 };
 const survey = new Survey.Model(json);
-
-        
-
-        
-
-        return (
-            <Survey.Survey
-                model={survey}
-            />
+    return (
+        <Survey model={survey}/>
         );
-    }
-}
 
 export default SurveyComponent;
