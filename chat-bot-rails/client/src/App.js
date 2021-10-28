@@ -29,6 +29,17 @@ function App() {
   const Logout = () => {
     setUser({username: "", password: ""});
   }
+
+        {(user == "") ? (
+          <div className="welcome-message">
+            <h2>Welcome, <span>{user.username}</span></h2>
+            <button onClick={Logout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <LoginForm Login={Login} error={error} />
+          </div>
+        )}
   
   const user_input = { "user_input" : "I am feeling worse"}
 
@@ -89,16 +100,7 @@ console.log(userFeeling)
       <Route exact path="/home"><HomePage/></Route>
     </Switch>
       
-        {(user == "") ? (
-          <div className="welcome-message">
-            <h2>Welcome, <span>{user.username}</span></h2>
-            <button onClick={Logout}>Logout</button>
-          </div>
-        ) : (
-          <div>
-            <LoginForm Login={Login} error={error} />
-          </div>
-        )}
+        
 
     </div>
   );
