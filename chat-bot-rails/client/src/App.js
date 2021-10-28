@@ -1,8 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import React, { Switch, Route } from 'react-router-dom'
+//////////----PAGES----////////////////////////////////
+import History from './components/History'
+import ChatRoom from './components/ChatRoom'
+import HomePage from './components/HomePage'
+import LoginForm from './components/LoginForm'
 
 function App() {
-  // const [ userInput, setUserInput ] = useState(' ')
-  // const user_input = { "user_input" : `${userInput}`}
+  const [user, setUser] = useState({name: "", password: ""})
+  const [error, setError] = useState("")
+
+  const Login = details => {
+    console.log(details);
+  }
+
+  const Logout = () => {
+    console.log("Logout");
+  }
+  
+  const user_input = { "user_input" : "I am feeling worse"}
+
 
   const [userFeeling, setFeeling ] = useState({})
   const [ Deconstructed_User_Input, setDeconstructed_User_Input] = useState({})
@@ -52,13 +70,25 @@ console.log(userFeeling)
 
   return(
     <div className="App">
-      {/* <button  onClick={()=> handleFeelings(userInput)}>test</button> */}
-      <form onSubmit={(e)=> handleSubmit(e)}>
-        <label>Type to Roboto</label>
-          <input name="userType" type="text" ></input>
-        <button type='submit'> roboto</button>
-      </form>
+
+    <Switch>
+      <Route exact path="/"><LoginForm /></Route>
+      <Route exact path="/history"><History/></Route>
+      <Route exact path="/chatRoom"><ChatRoom /></Route>
+      <Route exact path="/home"><HomePage/></Route>
+    </Switch>
       
+        {(user == "") ? (
+          <div className="welcome-message">
+            <h2>Welcome, <span>{user.name}</span></h2>
+            <button>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <LoginForm Login={Login} error={error} />
+          </div>
+        )}
+
     </div>
   );
 }
