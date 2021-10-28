@@ -4,6 +4,10 @@ class RobotsController < ApplicationController
 
 
   def word_search
+
+
+    byebug
+
     partOfSpeechHash = {}
     user_input = params[:user_input]
 
@@ -13,12 +17,8 @@ class RobotsController < ApplicationController
         hash = JSON.parse(json_resp)
         partOfSpeechHash[hash[0]["meanings"][0]["partOfSpeech"]] = t
       }
-      
-    if !!partOfSpeechHash
-      render json: partOfSpeechHash, status: :accepted
-    else
-      render json: {error: "Unknown word"}, status: :unprocessable_entity
-    end
+
+  
   end
 
 end

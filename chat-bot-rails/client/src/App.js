@@ -40,18 +40,6 @@ function handleFeelings(input){
 }
 
 
-function respond(input){
-  if(input){
-
-  }else if(input){
-
-  }else if(input){
-
-  }else{
-
-  }
-}
-
 function handleSubmit(e){
   e.preventDefault()
   const user_input = { "user_input" : `${e.target.userType.value}`}
