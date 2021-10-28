@@ -1,6 +1,18 @@
 import { useState, useEffect } from 'react'
+import LoginForm from './components/LoginForm'
 
 function App() {
+  const [user, setUser] = useState({name: "", password: ""})
+  const [error, setError] = useState("")
+
+  const Login = details => {
+    console.log(details);
+  }
+
+  const Logout = () => {
+    console.log("Logout");
+  }
+  
   const user_input = { "user_input" : "I am feeling worse"}
 
   const [ Deconstructed_User_Input, setDeconstructed_User_Input] = useState({})
@@ -33,7 +45,15 @@ console.log(Deconstructed_User_Input)
 // respond('depressed')
   return(
     <div className="App">
-
+      
+        {(user == "") ? (
+          <div className="welcome-message">
+            <h2>Welcome, <span>{user.name}</span></h2>
+            <button>Logout</button>
+          </div>
+        ) : (
+          <LoginForm Login={Login} error={error} />
+        )}
     </div>
   );
 }
