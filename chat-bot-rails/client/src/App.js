@@ -7,10 +7,21 @@ function App() {
 
   const Login = details => {
     console.log(details);
+
+    if(details.name == user.name && details.password == user.password) {
+      console.log("Logged In");
+      setUser({
+        name: details.name,
+        password: details.password
+      });
+    } else {
+      console.log("Details do not match!");
+      setError("Details do not match!");
+    }
   }
 
   const Logout = () => {
-    console.log("Logout");
+    setUser({name: "", password: ""});
   }
   
   const user_input = { "user_input" : "I am feeling worse"}
@@ -49,7 +60,7 @@ console.log(Deconstructed_User_Input)
         {(user == "") ? (
           <div className="welcome-message">
             <h2>Welcome, <span>{user.name}</span></h2>
-            <button>Logout</button>
+            <button onClick={Logout}>Logout</button>
           </div>
         ) : (
           <LoginForm Login={Login} error={error} />
