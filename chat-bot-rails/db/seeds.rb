@@ -7,7 +7,7 @@
 #   Character.create(robot_id: 1, name: 'Luke', movie: movies.first)
 Robot.create(name: "POOP")
 
-puts "Developing Negative names..."
+puts "Developing Negative Felling..."
 Feeling.create(robot_id: 1, name: "sad", idacator: 0)
 Feeling.create(robot_id: 1, name: "anger", idacator: 0)
 Feeling.create(robot_id: 1, name: "fear", idacator: 0)
