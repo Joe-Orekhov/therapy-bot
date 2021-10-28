@@ -1,4 +1,10 @@
 import { useState, useEffect } from 'react'
+
+import React, { Switch, Route } from 'react-router-dom'
+//////////----PAGES----////////////////////////////////
+import History from './components/History'
+import ChatRoom from './components/ChatRoom'
+import HomePage from './components/HomePage'
 import LoginForm from './components/LoginForm'
 
 function App() {
@@ -26,36 +32,62 @@ function App() {
   
   const user_input = { "user_input" : "I am feeling worse"}
 
-  const [ Deconstructed_User_Input, setDeconstructed_User_Input] = useState({})
-  useEffect(()=>{
-  fetch("http://localhost:3000/word_search",{
-    method: "POST",
-    headers:{
-      "Content-Type": "application/json",
-      "Accept" : "application/json"
-    },
-    body: JSON.stringify(user_input)
-  })
-.then(resp => resp.json())
-.then(data=> setDeconstructed_User_Input(data))
-  },[])
 
+  const [userFeeling, setFeeling ] = useState({})
+  const [ Deconstructed_User_Input, setDeconstructed_User_Input] = useState({})
+
+
+  ////////////////////////////////////////////////////////////////////////////
+  // Fetch To Dictionary
+  ////////////////////////////////////////////////////////////////////////////
+
+function wordInformation(userInput) {
+    fetch("http://localhost:3000/word_search",{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+        "Accept" : "application/json"
+      },
+      body: JSON.stringify(userInput)
+  })
+    .then(resp => resp.json())
+    .then(data=> setDeconstructed_User_Input(data))
+  }
+
+  ////////////////////////////////////////////////////////////////////////////
+  // feelings Filter
+  ////////////////////////////////////////////////////////////////////////////
+  function feelingFilter(feels){
+    fetch(`http://localhost:3000/feelings/${feels}`)
+    .then(resp => resp.json())
+    .then(data => setFeeling(data))
+};
+
+function handleFeelings(input){
+  input.split(' ').forEach(w=>{ 
+    feelingFilter(String.raw`${w}`)})
+}
+
+
+function handleSubmit(e){
+  e.preventDefault()
+  const user_input = { "user_input" : `${e.target.userType.value}`}
+  wordInformation(user_input)
+  handleFeelings(e.target.userType.value)
+}
 
 console.log(Deconstructed_User_Input)
-  // wordSearch(user_input)
+console.log(userFeeling)
 
-  // function respond(word){
-  //   if( word === "sad" || word === "bad" || word === "depressed" ){
-  //     console.log( `Sorry to hear that you're ${word},`)
-  //   }else if( word === "happy" ){
-  //     console.log ("Fantastic! What has cuased you to be happy?")
-  //   }else 
-  //     console.log( "Could you explain?")
-  // };
-
-// respond('depressed')
   return(
     <div className="App">
+
+    <Switch>
+      <Route exact path="/"><LoginForm /></Route>
+      <Route exact path="/history"><History/></Route>
+      <Route exact path="/chatRoom"><ChatRoom /></Route>
+      <Route exact path="/home"><HomePage/></Route>
+    </Switch>
       
         {(user == "") ? (
           <div className="welcome-message">
@@ -63,8 +95,11 @@ console.log(Deconstructed_User_Input)
             <button onClick={Logout}>Logout</button>
           </div>
         ) : (
-          <LoginForm Login={Login} error={error} />
+          <div>
+            <LoginForm Login={Login} error={error} />
+          </div>
         )}
+
     </div>
   );
 }
