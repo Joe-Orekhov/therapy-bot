@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react'
 import LoginForm from './components/LoginForm'
 
 function App() {
-  const [user, setUser] = useState({name: "", password: ""})
+  const [user, setUser] = useState({username: "", password: ""})
   const [error, setError] = useState("")
 
   const Login = details => {
     console.log(details);
 
-    if(details.name == user.name && details.password == user.password) {
+    if(details.username == user.username && details.password == user.password) {
       console.log("Logged In");
       setUser({
-        name: details.name,
+        username: details.username,
         password: details.password
       });
     } else {
@@ -21,7 +21,7 @@ function App() {
   }
 
   const Logout = () => {
-    setUser({name: "", password: ""});
+    setUser({username: "", password: ""});
   }
   
   const user_input = { "user_input" : "I am feeling worse"}
@@ -59,7 +59,7 @@ console.log(Deconstructed_User_Input)
       
         {(user == "") ? (
           <div className="welcome-message">
-            <h2>Welcome, <span>{user.name}</span></h2>
+            <h2>Welcome, <span>{user.username}</span></h2>
             <button onClick={Logout}>Logout</button>
           </div>
         ) : (
