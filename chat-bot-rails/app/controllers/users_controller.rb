@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
+    skip_before_action :confirm_authentication
+
     def index
         render json: User.all
     end
     
     def show
-        user = User.find_by(id: session[:user_id])
-        if user
-            render json: user, status: :ok
+        if current_user
+            render json: current_user, status: :ok
         else
-            render json: { error: "Not authorized, therefore no active session" }, status: :unauthorized
+            render json: { error: "No active session" }, status: :unauthorized
         end
     end
 
@@ -30,4 +31,3 @@ class UsersController < ApplicationController
     end
 
 end
-

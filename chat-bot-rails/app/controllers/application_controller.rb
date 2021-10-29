@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
+  before_action :confirm_authentication
   
-
   private
 
   def current_user
@@ -11,9 +11,9 @@ class ApplicationController < ActionController::API
     # if current_user returns nil, results in 401
   end
 
-end
+  def confirm_authenication
+    # you pretty much need to be logged in to do/see anything - reason for adding this to application controller instead of specific controllers
+    render json: { error: "You must be logged in to do that"}, status: :unauthorized unless current_user
+  end
 
-  # def hello_world
-  #   session[:count] = (session[:count] || 0) + 1
-  #   render json: { count: session[:count] }
-  # end
+end
