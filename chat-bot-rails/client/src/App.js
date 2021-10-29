@@ -20,7 +20,7 @@ function App() {
       }
     });
     
-if (user) ? (<h2>Welcome, {user.username}!</h2>) : (<Login onLogin={setUser} />)
+// if (user) ? (<h2>Welcome, {user.username}!</h2>) : (<Login onLogin={setUser} />)
 
   }, []);
   
