@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import React, { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 //////////----PAGES----////////////////////////////////
 import History from './components/History'
 import ChatRoom from './components/ChatRoom'
 import HomePage from './components/HomePage'
 import LoginForm from './components/LoginForm'
+import QuestionForm from './components/QuestionForm'
 
 function App() {
+
   const [user, setUser] = useState({username: "", password: ""})
   const [error, setError] = useState("")
   
@@ -58,15 +60,14 @@ useEffect(()=>{
   return(
     <div className="App">
 
-    <Switch>
-      <Route exact path="/"><LoginForm /></Route>
-      <Route exact path="/history"><History/></Route>
-      <Route exact path="/chatRoom"><ChatRoom setUserSent={setUserSent} userSent={userSent} renderChats={renderChats} setRenderChats={setRenderChats}/></Route>
-      <Route exact path="/home"><HomePage/></Route>
-    </Switch>
+      <Switch>
+        <Route exact path="/"><LoginForm setUser={setUser} user={user} /></Route>
+        <Route exact path="/history"><History/></Route>
+        <Route exact path="/question-form"><QuestionForm/></Route>
+        <Route exact path="/chatRoom"><ChatRoom setUserSent={setUserSent} userSent={userSent} renderChats={renderChats} setRenderChats={setRenderChats}/></Route>
+        <Route exact path="/home"><HomePage /></Route>
+      </Switch>
       
-        
-
     </div>
   );
 }

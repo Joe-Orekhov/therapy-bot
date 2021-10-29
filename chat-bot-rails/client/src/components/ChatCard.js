@@ -24,6 +24,7 @@ function IsUser(msg){
     <div id="chatroom-screen">
     
       <IsUser msg={msg}/>
+      {/* <h3>ChatCard</h3> */}
 
     </div>
   )

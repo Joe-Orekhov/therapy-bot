@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -6,12 +6,43 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+div #navbar {
+  margin-bottom: 3%;
+  padding: 3px;
+  font-weight: 600;
 }
 
+#nav-button {
+  padding: 3px;
+  margin-inline: 2%;
+  font: 800 1rem/1.3 Consolas, Andale Mono, monospace;
+}
+
+#questionnaire-title {
+  margin-bottom: -2%;
+}
+
+#questionnaire-question {
+  margin-bottom: 1%;
+  margin-top: 3%;
+}
+
+#selectList {
+  margin-top: 3px;
+  padding: 3px;
+  font: 400 0.9rem/1.3 Consolas, Andale Mono, monospace;
+}
+
+#questionnaire-submit {
+  margin-top: 5%;
+  padding: 3px;
+  font: 800 1rem/1.3 Consolas, Andale Mono, monospace;
+}
 
 /* CRT MONITOR CSS */
 * {
@@ -31,9 +62,18 @@ body {
   padding: 3rem;
 }
 
-#cursor-blink {
+#cursor-blink-1 {
   animation:blinker 1s linear infinite;
 }
+
+#cursor-blink-2 {
+  animation:blinker 1.5s 1s linear infinite;
+}
+
+#cursor-blink-3 {
+  animation:blinker 2s linear infinite;
+}
+
 @keyframes blinker {
   50% {
     opacity: 0;
@@ -185,6 +225,7 @@ body {
   pointer-events: none;
   animation: flicker 0.15s infinite;
 }
+
 .crt::before {
   content: " ";
   display: block;

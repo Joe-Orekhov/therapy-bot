@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import ChatCard from "./ChatCard";
 import NavBar from './NavBar'
-import QuestionForm from "./QuestionForm";
 
-function ChatRoom({ userSent, setUserSent, setRenderChats, renderChats }){
+function ChatRoom({ Login, setUser, user,  userSent, setUserSent, setRenderChats, renderChats }){
 
 const [ chats, setChats ] = useState([])
 const [ userMsg, setUserMsg ] = useState("")
@@ -55,6 +54,7 @@ function handleSubmit(e, userChat){
     setUserSent(true)
   }
 };
+
   return(
     <div id="chatroom-screen">
       <NavBar />
@@ -70,6 +70,7 @@ function handleSubmit(e, userChat){
           </form>
           <button onClick={()=> deleteAllChats()}>Delete all</button>
       {/* <QuestionForm /> */}
+
     </div>
   )
 }

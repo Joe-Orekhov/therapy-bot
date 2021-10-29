@@ -57,8 +57,4 @@ appo1 = Appointment.create(user_id: user1.id, robot_id: roboto.id, questionnaire
 
 Chat.create(appointment_id: appo1.id, is_user: false, message: "Hey, #{user1.username}, how are you doing today?")
 
-
-
-
-
 puts "I SHOULD BE WORKING"
