@@ -36,7 +36,7 @@ function QuestionForm() {
                     <option value="0">Disagree</option>
                 </select>
 
-                <h3 id="questionnaire-question">It is important to make your bed everyday?</h3>
+                <h3 id="questionnaire-question">Is it important for you to make your bed everyday?</h3>
                 <select onChange={changeHandler2} name="selectList" id="selectList">
                     <option value="N/A">Select an option</option>
                     <option value="2">Agree</option>

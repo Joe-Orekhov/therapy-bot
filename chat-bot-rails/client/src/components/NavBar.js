@@ -9,6 +9,8 @@ function NavBar(){
       <Link to="/history"><button id="nav-button">History</button></Link>
       <Link to="/chatRoom"><button id="nav-button">Chat Room</button></Link>
       <Link to="/home"><button id="nav-button">Home</button></Link>
+      {/* <button onClick={Logout}>Logout</button> */}
+      <br />
       <h1>------------------------------</h1>
     </div>
   )
