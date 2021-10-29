@@ -30,6 +30,7 @@ function App() {
     setUser({username: "", password: ""});
   }
 
+
         {(user == "") ? (
           <div className="welcome-message">
             <h2>Welcome, <span>{user.username}</span></h2>
@@ -42,7 +43,6 @@ function App() {
         )}
   
   const user_input = { "user_input" : "I am feeling worse"}
-
 
   const [userFeeling, setFeeling ] = useState({})
   const [ Deconstructed_User_Input, setDeconstructed_User_Input] = useState({})

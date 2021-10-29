@@ -1,0 +1,2 @@
+class ComplexUserMessagesController < ApplicationController
+end

@@ -44,5 +44,19 @@ puts "FEELINGS DEVELOPED!!"
 puts "I am now self aware"
 
 Appointment.create(user_id: 1, robot_id: 1, questionnaire: "BOP", review: 'COW')
+
+
 Chat.create(appointment_id: 1, is_user: true, message: "HELLO")
+Chat.create(appointment_id: 1, is_user: false, message: "HELLO1")
+Chat.create(appointment_id: 1, is_user: true, message: "HELLO2")
+Chat.create(appointment_id: 1, is_user: false, message: "HELLO3")
+Chat.create(appointment_id: 1, is_user: true, message: "HELLO4")
+Chat.create(appointment_id: 1, is_user: false, message: "i am happy")
+
+puts "Chat trial"
+
 User.create(name: "POOP", username:"POOP", password: "POOP")
+
+ComplexUserMessage.create(message: '{test: test, test1: test1}', chat_id: 1)
+
+puts "I SHOULD BE WORKING"

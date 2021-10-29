@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_184155) do
+ActiveRecord::Schema.define(version: 2021_10_28_204356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 2021_10_27_184155) do
     t.integer "appointment_id"
     t.boolean "is_user"
     t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "complex_user_messages", force: :cascade do |t|
+    t.string "message"
+    t.integer "chat_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -50,9 +57,9 @@ ActiveRecord::Schema.define(version: 2021_10_27_184155) do
     t.string "name"
     t.string "username"
     t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
   end
 
 end
