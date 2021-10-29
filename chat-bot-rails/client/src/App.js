@@ -1,17 +1,72 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
+
+import React, { Switch, Route } from 'react-router-dom'
+//////////----PAGES----////////////////////////////////
+import History from './components/History'
+import ChatRoom from './components/ChatRoom'
+import HomePage from './components/HomePage'
+import LoginForm from './components/LoginForm'
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState({username: "", password: ""})
+  const [error, setError] = useState("")
+  
+console.log()
+  const Login = details => {
+    console.log(details);
 
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+    if(details.username == user.username && details.password == user.password) {
+      console.log("Logged In");
+      setUser({
+        username: details.username,
+        password: details.password
+      });
+    } else {
+      console.log("Details do not match!");
+      setError("Details do not match!");
+    }
+  }
 
-  return (
+  const Logout = () => {
+    setUser({username: "", password: ""});
+  }
+
+
+        {(user == "") ? (
+          <div className="welcome-message">
+            <h2>Welcome, <span>{user.username}</span></h2>
+            <button onClick={Logout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <LoginForm Login={Login} error={error} />
+          </div>
+        )}
+
+  ////////////////////////////////////////////////////////////////////////////
+  // Fetch To Responce
+  ////////////////////////////////////////////////////////////////////////////
+  const[ userSent, setUserSent ] = useState(false)
+  const[ renderChats, setRenderChats] = useState(false)
+
+useEffect(()=>{
+    fetch("http://localhost:3000/word_search")
+    .then(resp => resp.json())
+    .then(data=> console.log(data))
+},[userSent])
+
+  return(
     <div className="App">
-      <h1>Page Count: {count}</h1>
+
+    <Switch>
+      <Route exact path="/"><LoginForm /></Route>
+      <Route exact path="/history"><History/></Route>
+      <Route exact path="/chatRoom"><ChatRoom setUserSent={setUserSent} userSent={userSent} renderChats={renderChats} setRenderChats={setRenderChats}/></Route>
+      <Route exact path="/home"><HomePage/></Route>
+    </Switch>
+      
+        
+
     </div>
   );
 }
