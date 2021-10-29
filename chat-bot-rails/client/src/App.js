@@ -8,45 +8,29 @@ import HomePage from './components/HomePage'
 import LoginForm from './components/LoginForm'
 
 function App() {
-  const [user, setUser] = useState({username: "", password: ""})
-  const [error, setError] = useState("")
+  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState({username: "", password: ""})
 
-  const Login = details => {
-    console.log(details);
-
-    if(details.username == user.username && details.password == user.password) {
-      console.log("Logged In");
-      setUser({
-        username: details.username,
-        password: details.password
-      });
-    } else {
-      console.log("Details do not match!");
-      setError("Details do not match!");
-    }
-  }
-
-  const Logout = () => {
-    setUser({username: "", password: ""});
-  }
-
-        {(user == "") ? (
-          <div className="welcome-message">
-            <h2>Welcome, <span>{user.username}</span></h2>
-            <button onClick={Logout}>Logout</button>
-          </div>
-        ) : (
-          <div>
-            <LoginForm Login={Login} error={error} />
-          </div>
-        )}
+    // if(details.username == user.username && details.password == user.password)
   
-  const user_input = { "user_input" : "I am feeling worse"}
+  useEffect(() => {
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+    
+if (user) ? (<h2>Welcome, {user.username}!</h2>) : (<Login onLogin={setUser} />)
 
+  }, []);
+  
+  
+
+
+  const user_input = { "user_input" : "I am feeling worse"}
 
   const [userFeeling, setFeeling ] = useState({})
   const [ Deconstructed_User_Input, setDeconstructed_User_Input] = useState({})
-
 
   ////////////////////////////////////////////////////////////////////////////
   // Fetch To Dictionary
@@ -79,7 +63,6 @@ function handleFeelings(input){
     feelingFilter(String.raw`${w}`)})
 }
 
-
 function handleSubmit(e){
   e.preventDefault()
   const user_input = { "user_input" : `${e.target.userType.value}`}
@@ -93,15 +76,13 @@ console.log(userFeeling)
   return(
     <div className="App">
 
-    <Switch>
-      <Route exact path="/"><LoginForm /></Route>
-      <Route exact path="/history"><History/></Route>
-      <Route exact path="/chatRoom"><ChatRoom /></Route>
-      <Route exact path="/home"><HomePage/></Route>
-    </Switch>
+      <Switch>
+        <Route exact path="/"><LoginForm setUser={setUser} user={user} /></Route>
+        <Route exact path="/history"><History/></Route>
+        <Route exact path="/chatRoom"><ChatRoom /></Route>
+        <Route exact path="/home"><HomePage /></Route>
+      </Switch>
       
-        
-
     </div>
   );
 }
