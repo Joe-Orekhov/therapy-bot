@@ -6,6 +6,7 @@ import History from './components/History'
 import ChatRoom from './components/ChatRoom'
 import HomePage from './components/HomePage'
 import LoginForm from './components/LoginForm'
+import QuestionForm from './components/QuestionForm'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -70,6 +71,7 @@ console.log(userFeeling)
       <Switch>
         <Route exact path="/"><LoginForm setUser={setUser} user={user} /></Route>
         <Route exact path="/history"><History/></Route>
+        <Route exact path="/question-form"><QuestionForm/></Route>
         <Route exact path="/chatRoom"><ChatRoom /></Route>
         <Route exact path="/home"><HomePage /></Route>
       </Switch>

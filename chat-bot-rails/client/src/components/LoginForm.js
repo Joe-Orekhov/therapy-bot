@@ -1,10 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function LoginForm({ setUser, user }) {
-
-    // const Logout = () => {
-    //     setUser({username: "", password: ""});
-    // }
 
 const submitHandler = e => {
     e.preventDefault();
@@ -40,7 +37,7 @@ const submitHandler = e => {
                 <label htmlFor="password">Password: </label>
                 <input type="password" name="password" id="password" />
             </div>
-            <input type="submit" value="LOGIN" />
+            <Link to="/home"><input type="submit" value="LOGIN" /></Link>
         </div>
       </form>
     )

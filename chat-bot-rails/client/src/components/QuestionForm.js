@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import NavBar from './NavBar';
 
 function QuestionForm() {
     const [ options, setOptions ] = useState({});
@@ -26,6 +28,7 @@ function QuestionForm() {
 
     return(
         <div>
+            <NavBar />
             <form onSubmit={submitOptionsHandler}>
             <h2 id="questionnaire-title">Patient Health Questionnaire</h2>
                 <h3 id="questionnaire-question">Is your room currently clean?</h3>
@@ -60,7 +63,7 @@ function QuestionForm() {
                     <option value="0">Disagree</option>
                 </select>
                 <br />
-                <input id="questionnaire-submit" type="submit" value="START CHAT" />
+                <Link to="/chatRoom"><input id="questionnaire-submit" type="submit" value="START CHAT" /></Link>
             </form>
         </div>
     )
