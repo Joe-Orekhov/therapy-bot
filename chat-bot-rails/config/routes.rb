@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :complex_user_messages
   resources :feelings, only: [:show]
-  resources :chats, only: [:index, :destroy]
+  resources :chats, only: [:index, :destroy, :create]
   resources :robots
   resources :appointments
   resources :users

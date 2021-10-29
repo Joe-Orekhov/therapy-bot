@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+#chatroom-screen{
+  background-color: black;
+  width: 100px;
+}
+
+#robotoMSG{
+  color: black;
+}
+
+.robotoMSG{
+  color: red;
+}

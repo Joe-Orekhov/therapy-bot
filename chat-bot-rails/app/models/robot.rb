@@ -7,12 +7,17 @@ class Robot < ApplicationRecord
 
     # THIS FILTERS THE SENTENCE TO FIND KEY FEELING WORDS
     def self.feeling_search
-        user_message = self.first.chats.last.message
+        user_message = Chat.last.message
         split_message = user_message.split(' ')
         feeling_list = split_message.map {|message| Feeling.find_by(name: message)}
-        select_feels = feeling_list.map do |feeling| 
 
-                if !!feeling
+        selecting_feels = feeling_list.map do |feeling| 
+            if !feeling
+              return feeling
+            end
+          end
+
+                if !!selecting_feels
                   randomizer = rand(3)
                     if feeling.idacator === 0
 # .................................................................NEGATIVE
@@ -47,12 +52,11 @@ class Robot < ApplicationRecord
                       else 
                         return "That #{feeling.name}!! HAHA, why though?"
                       end
-                    else
-                      return false
-                    end
-                    return feeling
+                else
+                  return false
                 end
-            end
+                    
+                end
     end
 
 
