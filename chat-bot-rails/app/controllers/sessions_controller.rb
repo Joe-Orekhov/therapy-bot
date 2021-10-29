@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+    before_action :set_session, only: [:destroy]
+
     def create
         user = User.find_by(username: params[:username])
         # if user exists, call authenticate on user
@@ -20,5 +22,11 @@ class SessionsController < ApplicationController
         else
             render json: { error: "No active session" }, status: :unprocessable_entity
         end
+    end
+
+    private
+
+    def set_session
+        @session = Session.find([params[:id]])
     end
 end

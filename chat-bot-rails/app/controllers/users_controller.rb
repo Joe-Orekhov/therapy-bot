@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
     skip_before_action :confirm_authentication
+    before_action :set_user, only: [:show]
+
+    #### DO WE NEED THIS  ?
+    # wrap_parameters :user, include: [:name, :username, :password, :password_confirmation]
 
     def index
-        render json: User.all
+        @users = User.all
+        render json: @users
     end
     
     def show
@@ -20,14 +25,20 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: user.errors, status: :unprocessable_entiy
+            render json: @users.errors, status: :unprocessable_entiy
         end
+    
+    def destroy
+        @users.destroy
     end
-
+end
     private
 
     def user_params
-        params.permit[:username, :password, :password_confirmation]
+        params.permit[:name, :username, :password, :password_confirmation]
     end
 
+    def set_user
+        @user = User.find([params[:id]])
+    end
 end

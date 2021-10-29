@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import React, { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 //////////----PAGES----////////////////////////////////
 import History from './components/History'
 import ChatRoom from './components/ChatRoom'
