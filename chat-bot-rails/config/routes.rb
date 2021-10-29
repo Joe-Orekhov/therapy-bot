@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  # resources :chats
+  # resources :appointments
   resources :feelings, only: [:show]
-  resources :chats
-  resources :robots
-  resources :appointments
-  resources :users
-  # get "/hello", to: "application#hello_world"
+  resources :sessions, only: [:create, :destroy]
+  resources :users, only: [:index, :show, :create]
+  
   post "/word_search", to: "robots#word_search"
 
   # me endpoint allows react app to remember whether we are logged in or not
