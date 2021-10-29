@@ -62,9 +62,18 @@ body {
   padding: 3rem;
 }
 
-#cursor-blink {
+#cursor-blink-1 {
   animation:blinker 1s linear infinite;
 }
+
+#cursor-blink-2 {
+  animation:blinker 1.5s 1s linear infinite;
+}
+
+#cursor-blink-3 {
+  animation:blinker 2s linear infinite;
+}
+
 @keyframes blinker {
   50% {
     opacity: 0;
