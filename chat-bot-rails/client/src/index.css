@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,8 +10,40 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+div #navbar {
+  margin-bottom: 3%;
+  padding: 3px;
+  font-weight: 600;
 }
 
+#nav-button {
+  padding: 3px;
+  margin-inline: 2%;
+  font: 800 1rem/1.3 Consolas, Andale Mono, monospace;
+}
+
+#questionnaire-title {
+  margin-bottom: -2%;
+}
+
+#questionnaire-question {
+  margin-bottom: 1%;
+  margin-top: 3%;
+}
+
+#selectList {
+  margin-top: 3px;
+  padding: 3px;
+  font: 400 0.9rem/1.3 Consolas, Andale Mono, monospace;
+}
+
+#questionnaire-submit {
+  margin-top: 5%;
+  padding: 3px;
+  font: 800 1rem/1.3 Consolas, Andale Mono, monospace;
+}
 
 /* CRT MONITOR CSS */
 * {

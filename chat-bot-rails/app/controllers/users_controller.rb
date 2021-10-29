@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
+    def index
+        render json: User.all
+    end
+    
     def show
-        if current_user
-            render json: current_user, status: :ok
+        user = User.find_by(id: session[:user_id])
+        if user
+            render json: user, status: :ok
         else
-            render json: { error: "No active session" }, status: :unauthorized
+            render json: { error: "Not authorized, therefore no active session" }, status: :unauthorized
         end
     end
 

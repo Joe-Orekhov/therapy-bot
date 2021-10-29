@@ -27,8 +27,8 @@ function QuestionForm() {
     return(
         <div>
             <form onSubmit={submitOptionsHandler}>
-            <h2>Patient Health Questionnaire</h2>
-                <h3 id="title">Is your room currently clean?</h3>
+            <h2 id="questionnaire-title">Patient Health Questionnaire</h2>
+                <h3 id="questionnaire-question">Is your room currently clean?</h3>
                 <select onChange={changeHandler1} name="selectList" id="selectList">
                     <option value="N/A">Select an option</option>
                     <option value="2">Agree</option>
@@ -36,7 +36,7 @@ function QuestionForm() {
                     <option value="0">Disagree</option>
                 </select>
 
-                <h3 id="title">It is important to make your bed everyday?</h3>
+                <h3 id="questionnaire-question">It is important to make your bed everyday?</h3>
                 <select onChange={changeHandler2} name="selectList" id="selectList">
                     <option value="N/A">Select an option</option>
                     <option value="2">Agree</option>
@@ -44,7 +44,7 @@ function QuestionForm() {
                     <option value="0">Disagree</option>
                 </select>
 
-                <h3 id="title">Are you feeling nervous, anxious, or on edge?</h3>
+                <h3 id="questionnaire-question">Are you feeling nervous, anxious, or on edge?</h3>
                 <select onChange={changeHandler3} name="selectList" id="selectList">
                     <option value="N/A">Select an option</option>
                     <option value="2">Agree</option>
@@ -52,15 +52,15 @@ function QuestionForm() {
                     <option value="0">Disagree</option>
                 </select>
 
-                <h3 id="title">Feeling down, depressed, or hopeless?</h3>
+                <h3 id="questionnaire-question">Feeling down, depressed, or hopeless?</h3>
                 <select onChange={changeHandler4} name="selectList" id="selectList">
                     <option value="N/A">Select an option</option>
                     <option value="2">Agree</option>
                     <option value="1">Neutral</option>
                     <option value="0">Disagree</option>
                 </select>
-                
-                <input type="submit" value="START CHAT" />
+                <br />
+                <input id="questionnaire-submit" type="submit" value="START CHAT" />
             </form>
         </div>
     )

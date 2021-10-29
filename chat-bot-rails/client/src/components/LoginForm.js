@@ -1,26 +1,44 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-function LoginForm({ Login, error }) {
-    const [ details, setDetails ] = useState({username: "", password: ""});
+function LoginForm({ setUser, user }) {
 
-    const submitHandler = e => {
-        e.preventDefault();
+    // const Logout = () => {
+    //     setUser({username: "", password: ""});
+    // }
 
-        Login(details);
+const submitHandler = e => {
+    e.preventDefault();
+
+        fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user }),
+        })
+          .then(resp => resp.json())
+          .then(user => console.log(user));
+    }
+    
+    const detailsUsernameHandler = e => {
+        setUser({...user, username: e.target.value})
+    }
+
+    const detailsPasswordHandler = e => {
+        setUser({...user, password: e.target.value})
     }
 
     return (
       <form onSubmit={submitHandler}>
           <div className="form-inner">
               <h2>Login</h2>
-              {(error != "") ? (<div className="error">{error}</div>) : ""}
-            <div className="form-group">
+            <div className="form-group" onChange={detailsUsernameHandler}>
                 <label htmlFor="username">Username: </label>
-                <input type="text" name="username" id="username" onChange={e => setDetails({...details, username: e.target.value})} value={details.username} />
+                <input type="text" name="username" id="username" />
             </div>
-            <div className="form-group">
+            <div className="form-group" onChange={detailsPasswordHandler}>
                 <label htmlFor="password">Password: </label>
-                <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password} />
+                <input type="password" name="password" id="password" />
             </div>
             <input type="submit" value="LOGIN" />
         </div>

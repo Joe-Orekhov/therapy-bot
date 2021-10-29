@@ -3,7 +3,7 @@ function ChatCard(){
 
   return(
     <div>
-      <h3>ChatCard</h3>
+      {/* <h3>ChatCard</h3> */}
     </div>
   )
 }
